@@ -127,7 +127,7 @@ img, svg { display: block; max-width: 100%; }
   padding: 96px var(--gutter) 80px;
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   gap: 32px 40px;
   align-items: start;
   border-bottom: 1px solid var(--rule);
@@ -143,7 +143,7 @@ img, svg { display: block; max-width: 100%; }
 .hero .eyebrow .coords { text-align: right; }
 
 .hero h1 {
-  grid-column: 1 / -1; grid-row: 2;
+  grid-column: 1 / -1; grid-row: 1;
   font-family: var(--display); font-weight: 400;
   font-size: clamp(52px, 10.5vw, 184px);
   line-height: .9; letter-spacing: -0.025em;
@@ -164,7 +164,7 @@ img, svg { display: block; max-width: 100%; }
 @keyframes rise { to { transform: translateY(0); } }
 
 .hero .intro {
-  grid-column: 1; grid-row: 3;
+  grid-column: 1; grid-row: 2;
   font-size: 17px; line-height: 1.65; max-width: 68ch;
   color: var(--ink);
   align-self: stretch;
@@ -191,7 +191,7 @@ img, svg { display: block; max-width: 100%; }
 .hero .intro .close-line em.warm { color: var(--brick); }
 
 .hero-media {
-  grid-column: 2; grid-row: 2 / 4;
+  grid-column: 2; grid-row: 1 / 3;
   align-self: stretch; justify-self: stretch;
   width: 100%; min-width: 0; height: 100%; min-height: 420px;
   position: relative;
@@ -780,10 +780,10 @@ a.contact-block .v:hover, .contact-block a.v:hover { color: var(--brick); }
   .nav .center { display: none; }
   .nav .right { justify-self: end; }
   .nav .brand span:last-child { font-size: 10px; }
-  .hero { grid-template-columns: 1fr; padding: 88px var(--gutter) 60px; gap: 24px; min-height: auto; }
-  .hero h1 { padding-top: 0; font-size: clamp(48px, 14vw, 96px); }
-  .hero .intro { grid-column: 1; grid-row: auto; max-width: 52ch; }
-  .hero-media { order: 3; }
+  .hero { display: flex; flex-direction: column; padding: 88px var(--gutter) 60px; gap: 24px; min-height: auto; }
+  .hero h1 { padding-top: 0; font-size: clamp(48px, 14vw, 96px); order: 1; }
+  .hero .intro { max-width: 52ch; order: 3; padding-top: 8px; }
+  .hero-media { order: 2; }
   .hero .eyebrow { flex-direction: column; align-items: flex-start; gap: 12px; }
   .hero .eyebrow .coords { text-align: left; }
   .hero .eyebrow .loc { flex-wrap: wrap; gap: 8px 16px; }
