@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Team from "../components/Team.astro";
+import { images } from "../data/images";
+---
+
+<Layout title="About · Studio 17">
+  <section class="pt-20 pb-16">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="max-w-3xl reveal">
+        <div class="text-xs uppercase tracking-[0.25em] text-sage-deep">Our story</div>
+        <h1 class="mt-4 text-5xl md:text-7xl leading-[1.02]">A small studio, built on careful teaching.</h1>
+      </div>
+
+      <div class="mt-16 aspect-[16/9] rounded-3xl overflow-hidden reveal">
+        <img src={images.studioInterior} alt="Studio 17 interior" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="mt-16 grid md:grid-cols-2 gap-12 text-ink-soft leading-relaxed text-lg">
+        <p class="reveal">
+          Studio 17 opened in 2022 with a single idea: a reformer studio where no one gets lost in the back row.
+          We cap every class at eight reformers so that our instructors can actually watch you, and say something useful.
+        </p>
+        <p class="reveal">
+          We teach a classical reformer vocabulary with room for modern bodies: desk shoulders, runner's hips, post-baby cores, post-injury patience.
+          Our job isn't to put you through a workout. It's to help you move well enough that the rest of life feels easier.
+        </p>
+      </div>
+
+      <div class="mt-24 grid md:grid-cols-3 gap-8 reveal">
+        {[
+          ["Small", "Eight reformers per class. Always. No scaling up at peak times."],
+          ["Specific", "We write for the room we have. Not the algorithm. Every session has a plan."],
+          ["Steady", "Strength that lasts isn't built in six weeks. We're here for the long version."],
+        ].map(([t, d]) => (
+          <div>
+            <div class="text-xs uppercase tracking-[0.25em] text-sage-deep">{t}</div>
+            <p class="mt-4 text-ink">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Team />
+</Layout>

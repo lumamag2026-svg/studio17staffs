@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import BookingCalendar from "../components/BookingCalendar.astro";
+import About from "../components/About.astro";
+import AboutEmma from "../components/AboutEmma.astro";
+import Contact from "../components/Contact.astro";
+import { images } from "../data/images";
+---
+
+<Layout>
+  <Hero />
+  <Services />
+
+  <section class="studio-strip" aria-hidden="false">
+    <div class="strip-photo reveal">
+      <div class="ph">
+        <img src={images.studioReformers} alt="Studio 17, the reformer room" loading="lazy" />
+        <span class="ph-label"><span class="sq"></span> Studio · Seventeen reformers</span>
+        <span class="ph-tag">IMG · 04 · 16 : 7</span>
+      </div>
+    </div>
+  </section>
+
+  <BookingCalendar />
+  <About />
+  <AboutEmma />
+  <Contact />
+</Layout>

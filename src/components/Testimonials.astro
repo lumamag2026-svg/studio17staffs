@@ -1,0 +1,39 @@
+---
+const quotes = [
+  {
+    q: "After a slipped disc I thought I'd never feel steady again. Six months at Studio 17 and I'm moving better than I did before the injury.",
+    who: "Rachel M.",
+    role: "Member since 2023",
+  },
+  {
+    q: "The teaching is the best part. Every class, Emma spots something small I can adjust. It's not a workout mill. It's real instruction.",
+    who: "Peter D.",
+    role: "Member since 2024",
+  },
+  {
+    q: "I've tried reformer studios in Manchester and London. Studio 17 is calmer, more careful, and honestly prettier. My new home.",
+    who: "Imogen R.",
+    role: "Member since 2024",
+  },
+];
+---
+
+<section class="py-28">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+    <div class="text-xs uppercase tracking-[0.25em] text-sage-deep reveal">What members say</div>
+    <h2 class="mt-4 text-4xl md:text-6xl max-w-3xl reveal">Quiet rooms. Warm welcomes. Results that hold.</h2>
+
+    <div class="mt-16 grid md:grid-cols-3 gap-6">
+      {quotes.map((t) => (
+        <figure class="rounded-3xl bg-cream-deep/70 p-8 md:p-10 flex flex-col reveal">
+          <div class="text-sage-deep text-3xl font-display leading-none">"</div>
+          <blockquote class="mt-4 text-ink leading-relaxed flex-1">{t.q}</blockquote>
+          <figcaption class="mt-8 pt-6 border-t border-ink/10">
+            <div class="font-medium">{t.who}</div>
+            <div class="text-sm text-ink-soft">{t.role}</div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+import { images } from "../data/images";
+---
+
+<header class="hero" id="top">
+  <div class="eyebrow">
+    <div class="loc">
+      <span><b>Paragon</b> Avenue</span>
+      <span>Westbury Park, Staffs</span>
+      <span>ST5 4EX</span>
+    </div>
+    <div class="coords">
+      53°00′N · 02°12′W<br>
+      Est. MMXXII
+    </div>
+  </div>
+
+  <h1 aria-label="Pilates, slowly done well.">
+    <span class="word"><span>Pilates,</span></span>
+    <span class="word"><span class="italic">slowly</span></span><br>
+    <span class="word"><span>done</span></span>
+    <span class="word"><span class="stroke">well.</span></span>
+  </h1>
+
+  <div class="intro reveal">
+    <span class="sm">A studio, not a gym</span>
+    <p>Seventeen reformers. Natural light. Small classes taught
+    by Emma, who knows your name, your shoulders, and
+    the injury you'd rather not mention.</p>
+    <p>We move with intention, one vertebra at a time.
+    No mirrors, no music pounding, no counting reps at you.
+    An hour that belongs to your body, done in the old way.</p>
+    <p class="close-line">An hour that <em>matters</em>.<br>In a room that <em class="warm">doesn't rush you</em>.</p>
+  </div>
+
+  <div class="hero-media reveal">
+    <div class="ph">
+      <img src={images.heroStudio} alt="Studio 17, morning light" />
+      <span class="ph-label"><span class="sq"></span> Studio · Morning light</span>
+      <span class="ph-tag">IMG · 01</span>
+
+      <div class="breath" aria-hidden="true">
+        <svg viewBox="-110 -110 220 220">
+          <circle class="dashed" cx="0" cy="0" r="105" fill="none" stroke="currentColor" stroke-width=".6" opacity=".5"/>
+          <g class="ticks" stroke="currentColor" stroke-width="1" opacity=".55">
+            <line x1="0" y1="-96" x2="0" y2="-88"/>
+            <line x1="0" y1="96" x2="0" y2="88"/>
+            <line x1="-96" y1="0" x2="-88" y2="0"/>
+            <line x1="96" y1="0" x2="88" y2="0"/>
+            <line transform="rotate(45)" x1="0" y1="-94" x2="0" y2="-89"/>
+            <line transform="rotate(90)" x1="0" y1="-94" x2="0" y2="-89"/>
+            <line transform="rotate(135)" x1="0" y1="-94" x2="0" y2="-89"/>
+            <line transform="rotate(180)" x1="0" y1="-94" x2="0" y2="-89"/>
+            <line transform="rotate(225)" x1="0" y1="-94" x2="0" y2="-89"/>
+            <line transform="rotate(270)" x1="0" y1="-94" x2="0" y2="-89"/>
+            <line transform="rotate(315)" x1="0" y1="-94" x2="0" y2="-89"/>
+          </g>
+          <circle class="ring-outer" cx="0" cy="0" r="78" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle class="ring-mid" cx="0" cy="0" r="58" fill="none" stroke="currentColor" stroke-width="1" opacity=".7"/>
+          <circle class="ring-core" cx="0" cy="0" r="42" fill="currentColor" opacity=".12" stroke="currentColor" stroke-width="1"/>
+          <line x1="-8" y1="0" x2="8" y2="0" stroke="currentColor" stroke-width=".7" opacity=".6"/>
+          <line x1="0" y1="-8" x2="0" y2="8" stroke="currentColor" stroke-width=".7" opacity=".6"/>
+        </svg>
+        <div class="label">
+          <div>
+            <span class="w"><span>inhale</span><span>exhale</span></span>
+            <span class="count">04 · 08 · 04</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Reformer</span><span>Mat</span><span>Tower</span><span>Pre/Post-natal</span><span>Private</span><span>Duet</span>
+    <span>Reformer</span><span>Mat</span><span>Tower</span><span>Pre/Post-natal</span><span>Private</span><span>Duet</span>
+  </div>
+</div>

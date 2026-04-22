@@ -1,0 +1,61 @@
+---
+import Logo from "./Logo.astro";
+
+const year = new Date().getFullYear();
+const roman = (y: number) => {
+  const map: [number, string][] = [
+    [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+    [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+    [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+  ];
+  let out = "";
+  for (const [n, s] of map) { while (y >= n) { out += s; y -= n; } }
+  return out;
+};
+---
+
+<footer class="site-foot" id="visit">
+  <h3 class="foot-big">
+    Come <em>breathe</em> with us. <a href="mailto:hello@studio17staffs.co.uk">→ hello@studio17staffs.co.uk</a>
+  </h3>
+
+  <div class="foot-col">
+    <h4>Visit</h4>
+    <p>Paragon Avenue</p>
+    <p>Westbury Park, Staffordshire ST5 4EX</p>
+    <p style="margin-top:12px; color:var(--muted)">Mon to Fri · 06:30 to 20:00</p>
+    <p style="color:var(--muted)">Sat to Sun · 08:00 to 14:00</p>
+  </div>
+
+  <div class="foot-col">
+    <h4>Elsewhere</h4>
+    <p><a href="#">Instagram · @studio.seventeen</a></p>
+    <p><a href="#">Newsletter · The Slow Page</a></p>
+    <p style="margin-top:12px"><a href="tel:01782000017">01782 000 017</a></p>
+  </div>
+
+  <div class="foot-bottom">
+    <div class="foot-logo-wrap">
+      <Logo size="full" subtitle="REFORMER PILATES · STAFFS" />
+    </div>
+    <span class="foot-copy">© Studio 17 · {roman(year)}</span>
+  </div>
+</footer>
+
+<style>
+  .foot-bottom {
+    grid-column: 1 / -1;
+    display: flex; justify-content: space-between; align-items: end;
+    flex-wrap: wrap; gap: 24px;
+    padding-top: 48px; margin-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .foot-copy {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted);
+    padding-bottom: 8px;
+  }
+  @media (max-width: 900px) {
+    .foot-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+</style>

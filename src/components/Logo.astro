@@ -1,0 +1,92 @@
+---
+interface Props {
+  size?: "nav" | "full";
+  subtitle?: string;
+}
+
+const { size = "nav", subtitle = "REFORMER PILATES · STAFFS" } = Astro.props;
+---
+
+{size === "nav" ? (
+  <span class="logo logo-nav" aria-label="Studio 17">
+    <span class="bar" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="word">Studio <em>17</em></span>
+  </span>
+) : (
+  <span class="logo logo-full" aria-label="Studio 17">
+    <span class="bar" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="stack">
+      <span class="word">Studio <em>17</em></span>
+      <span class="sub">{subtitle}</span>
+    </span>
+  </span>
+)}
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--ink);
+    position: relative;
+    line-height: 1;
+  }
+
+  .logo .bar {
+    width: 2px;
+    background: var(--taupe);
+    flex-shrink: 0;
+  }
+  .logo .dot {
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%) translateX(1px);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--brick);
+  }
+
+  .logo .word {
+    font-family: var(--display);
+    font-style: italic;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    white-space: nowrap;
+    text-transform: none;
+    font-weight: 400;
+  }
+  .logo .word em {
+    font-style: italic;
+    color: var(--brick);
+  }
+
+  .logo .stack { display: inline-flex; flex-direction: column; gap: 6px; }
+  .logo .sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    white-space: nowrap;
+    font-weight: 400;
+  }
+
+  /* nav size — compact */
+  .logo-nav .bar { height: 24px; }
+  .logo-nav .dot { top: 50%; margin-top: -3.5px; }
+  .logo-nav .word { font-size: 22px; }
+
+  /* full size — for footer / hero */
+  .logo-full { gap: 18px; }
+  .logo-full .bar { height: 64px; }
+  .logo-full .dot { top: 32px; width: 9px; height: 9px; margin-top: -4.5px; }
+  .logo-full .word { font-size: 44px; }
+
+  @media (max-width: 900px) {
+    .logo-full .word { font-size: 32px; }
+    .logo-full .bar { height: 52px; }
+    .logo-full .sub { font-size: 9px; }
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { weeklySchedule, dayNames } from "../data/schedule";
+
+const order = [1, 2, 3, 4, 5, 6, 0];
+---
+
+<Layout title="Weekly Schedule · Studio 17">
+  <section class="pt-20 pb-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl reveal">
+        <div class="text-xs uppercase tracking-[0.25em] text-sage-deep">This week</div>
+        <h1 class="mt-4 text-5xl md:text-7xl">Schedule</h1>
+        <p class="mt-6 text-lg text-ink-soft">A typical week at Studio 17. Classes are 45 to 50 minutes. Book any slot below.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-28">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 grid gap-8">
+      {order.map((dow) => {
+        const classes = weeklySchedule[dow] ?? [];
+        return (
+          <div class="grid md:grid-cols-[200px_1fr] gap-6 py-8 border-t border-ink/10 reveal">
+            <div>
+              <div class="font-display text-3xl">{dayNames[dow]}</div>
+              <div class="text-sm text-ink-soft mt-1">{classes.length} classes</div>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {classes.map((c) => (
+                <a href="/bookings" class="group rounded-xl border border-ink/10 p-4 hover:border-sage-deep hover:bg-cream-deep/50 transition">
+                  <div class="flex items-center justify-between">
+                    <div class="font-display text-xl">{c.time}</div>
+                    <div class="text-xs text-ink-soft">{c.instructor}</div>
+                  </div>
+                  <div class="mt-1 text-sm text-ink">{c.name}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+</Layout>

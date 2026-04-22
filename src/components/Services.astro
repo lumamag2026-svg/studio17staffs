@@ -1,0 +1,32 @@
+---
+const services = [
+  { num: "01", name: "Reformer", emph: "Flow", meta: "Group", max: "Max 6", dur: "55 minutes", price: "£28", unit: "per class" },
+  { num: "02", name: "Classical", emph: "Mat", meta: "Group", max: "Max 10", dur: "50 minutes", price: "£18", unit: "per class" },
+  { num: "03", name: "Tower &", emph: "Cadillac", meta: "Group", max: "Max 4", dur: "60 minutes", price: "£34", unit: "per class" },
+  { num: "04", name: "Private", emph: "One-to-one", meta: "Format", max: "1:1", dur: "60 minutes", price: "£85", unit: "per session" },
+  { num: "05", name: "Pre &", emph: "Post-natal", meta: "Group", max: "Max 5", dur: "50 minutes", price: "£26", unit: "per class" },
+  { num: "06", name: "Rehab &", emph: "Recovery", meta: "Format", max: "1:1 · Physio-led", dur: "75 minutes", price: "£110", unit: "per session" },
+];
+---
+
+<section class="services tint" id="classes">
+  <div class="sec-label reveal">
+    <span class="num">02 / Method</span>
+    <h2>Six ways to <em>move</em>.<br>All taught by one teacher.</h2>
+  </div>
+
+  <ul class="svc-list reveal">
+    {services.map((s) => (
+      <li class="svc-row">
+        <span class="svc-num">{s.num}</span>
+        <span class="svc-name">{s.name} <em>{s.emph}</em></span>
+        <span class="svc-meta">{s.meta}<b>{s.max}</b></span>
+        <span class="svc-meta">Duration<b>{s.dur}</b></span>
+        <span class="svc-price">{s.price}<small>{s.unit}</small></span>
+        <span class="svc-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.2"/></svg>
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>

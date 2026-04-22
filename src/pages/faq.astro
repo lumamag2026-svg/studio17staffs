@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const faqs = [
+  {
+    q: "I've never done reformer pilates. Is it for beginners?",
+    a: "Yes. Reformer Foundations is specifically for first timers. You'll learn the machine, the spring system, and the basic repertoire before we move you into flow classes.",
+  },
+  {
+    q: "What should I wear?",
+    a: "Fitted activewear (loose shorts can catch on springs), grip socks (we sell them at the studio for £12 if you forget), and a water bottle.",
+  },
+  {
+    q: "How early should I arrive?",
+    a: "Five minutes early for your first class so we can walk you through the reformer. After that, two minutes is plenty.",
+  },
+  {
+    q: "What's the cancellation policy?",
+    a: "Cancel up to 12 hours before class for a full credit back. Inside 12 hours the class counts as used. The reformer can't be filled that late.",
+  },
+  {
+    q: "Do you teach during pregnancy?",
+    a: "Yes. Emma is prenatal-qualified and leads dedicated Prenatal Reformer classes on Tuesday evenings and Thursday mornings. We ask for your midwife's sign-off after week 24.",
+  },
+  {
+    q: "Can I book 1:1 sessions?",
+    a: "Yes. 60 minute privates with any instructor, subject to availability. Drop us a message via the contact page and we'll find a time.",
+  },
+  {
+    q: "How big are the classes?",
+    a: "Eight reformers, capped. No exceptions, even at peak times.",
+  },
+  {
+    q: "Do you have showers?",
+    a: "Yes, one shower and changing room on site, stocked with towels and toiletries.",
+  },
+];
+---
+
+<Layout title="FAQ · Studio 17">
+  <section class="pt-20 pb-28">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10">
+      <div class="reveal">
+        <div class="text-xs uppercase tracking-[0.25em] text-sage-deep">Questions, answered</div>
+        <h1 class="mt-4 text-5xl md:text-7xl">FAQ</h1>
+      </div>
+
+      <div class="mt-16 divide-y divide-ink/10 border-y border-ink/10">
+        {faqs.map((f) => (
+          <details class="group py-6 reveal">
+            <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+              <span class="font-display text-xl md:text-2xl">{f.q}</span>
+              <span class="w-8 h-8 shrink-0 rounded-full border border-ink/20 flex items-center justify-center transition group-open:rotate-45">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-ink-soft leading-relaxed">{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-16 text-ink-soft reveal">
+        Can't find your answer? <a href="/contact" class="underline underline-offset-4 text-ink hover:text-sage-deep">Send us a message</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

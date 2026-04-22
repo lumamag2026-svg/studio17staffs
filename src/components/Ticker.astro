@@ -1,0 +1,16 @@
+---
+const items = [
+  "Currently booking · Spring term",
+  "17 reformers",
+  "Est. 2022",
+  "Westbury Park, Staffs",
+  "Small classes, one teacher",
+];
+const doubled = [...items, ...items];
+---
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    {doubled.map((t) => <span>{t}</span>)}
+  </div>
+</div>

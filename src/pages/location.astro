@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { images } from "../data/images";
+---
+
+<Layout title="Location · Studio 17">
+  <section class="pt-20 pb-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl reveal">
+        <div class="text-xs uppercase tracking-[0.25em] text-sage-deep">Find us</div>
+        <h1 class="mt-4 text-5xl md:text-7xl">Paragon Avenue.</h1>
+        <p class="mt-6 text-lg text-ink-soft">A quiet corner of Westbury Park, a short drive from Newcastle-under-Lyme town centre.</p>
+      </div>
+
+      <div class="mt-16 aspect-[21/9] rounded-3xl overflow-hidden reveal">
+        <img src={images.studioEquipment} alt="Studio 17 equipment" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <div class="mt-12 grid lg:grid-cols-[1.3fr_1fr] gap-8">
+        <div class="aspect-[4/3] rounded-3xl bg-cream-deep overflow-hidden border border-ink/10 reveal">
+          <iframe
+            class="w-full h-full"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-2.241%2C53.005%2C-2.221%2C53.015&amp;layer=mapnik&amp;marker=53.010%2C-2.231"
+            loading="lazy"
+            title="Studio 17 map"
+          ></iframe>
+        </div>
+
+        <div class="rounded-3xl bg-cream-deep/60 p-8 md:p-10 reveal">
+          <h2 class="font-display text-3xl">Visit the studio</h2>
+          <dl class="mt-8 space-y-6 text-sm">
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-ink-soft">Address</dt>
+              <dd class="mt-2 text-ink">Paragon Avenue<br>Westbury Park<br>Staffordshire ST5 4EX</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-ink-soft">Parking</dt>
+              <dd class="mt-2 text-ink">On-street parking on Paragon Avenue. Quiet residential street, spaces easy to find outside peak hours.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-ink-soft">Public transport</dt>
+              <dd class="mt-2 text-ink">Bus stop at High Street, 4 min walk. Stoke-on-Trent station is 10 min by taxi.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-ink-soft">Accessibility</dt>
+              <dd class="mt-2 text-ink">Step-free entrance. Accessible WC. Let us know in advance and we'll set up the reformer closest to the door.</dd>
+            </div>
+          </dl>
+          <a href="/bookings" class="mt-10 inline-flex rounded-full bg-ink text-cream px-6 py-3 text-sm hover:bg-sage-deep transition">Plan your visit →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

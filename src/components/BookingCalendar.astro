@@ -1,0 +1,231 @@
+---
+import { weeklySchedule } from "../data/schedule";
+---
+
+<section class="booking" id="book">
+  <div class="sec-label reveal">
+    <span class="num">03 / Book</span>
+    <h2>Reserve your <em>hour</em>.<br>Studio terms, clear pricing.</h2>
+  </div>
+
+  <div class="book-grid reveal">
+    <div class="book-cal">
+      <div class="cal-head">
+        <div class="cal-title" id="cal-title"></div>
+        <div class="cal-nav">
+          <button id="cal-prev" aria-label="Previous month">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 1L3 6L8 11" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <button id="cal-next" aria-label="Next month">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 1L9 6L4 11" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cal-dow"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+      <div class="cal-days" id="cal-days"></div>
+      <div class="cal-legend">
+        <span><i></i> Classes available</span>
+        <span><span class="sq"></span> Selected</span>
+      </div>
+    </div>
+
+    <div class="book-slots">
+      <div class="slots-head">
+        <div class="slots-date" id="slots-date">Select a <em>date</em></div>
+        <div class="slots-meta" id="slots-meta">&nbsp;</div>
+      </div>
+      <ul class="slot-list" id="slot-list">
+        <li class="slots-empty">
+          Pick a date on the calendar
+          <span class="sm">We'll show the hours with a free reformer</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Drawer -->
+<div class="book-drawer" id="book-drawer" aria-hidden="true">
+  <div class="book-card" id="book-card">
+    <button class="close" id="drawer-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+
+    <div id="drawer-form">
+      <h3>Reserve your <em>hour</em></h3>
+      <div class="subtitle" id="drawer-sub"></div>
+
+      <div class="summary">
+        <span class="k">Class</span><span class="v" id="sum-class"></span>
+        <span class="k">Teacher</span><span class="v" id="sum-teacher"></span>
+        <span class="k">When</span><span class="v" id="sum-when"></span>
+      </div>
+
+      <form id="book-form">
+        <div class="book-field">
+          <label>Full name</label>
+          <input required name="name" placeholder="Jane Doe" />
+        </div>
+        <div class="book-field">
+          <label>Email</label>
+          <input required type="email" name="email" placeholder="jane@email.com" />
+        </div>
+        <div class="book-field">
+          <label>Phone (optional)</label>
+          <input type="tel" name="phone" placeholder="07..." />
+        </div>
+
+        <div class="book-actions">
+          <button type="button" class="book-btn ghost" id="drawer-cancel">Cancel</button>
+          <button type="submit" class="book-btn">Confirm</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="drawer-success" class="book-success" style="display:none">
+      <div class="check">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12L10 17L19 7" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <h3>Booked, <em>quietly</em>.</h3>
+      <div class="subtitle" id="success-sub"></div>
+      <p style="max-width: 36ch; margin: 20px auto 0; color: var(--muted); font-size: 14px;">
+        Your reformer is held. A confirmation is on its way to <span id="success-email"></span>.
+      </p>
+      <div class="book-actions" style="margin-top: 24px">
+        <button type="button" class="book-btn" id="drawer-done">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ schedule: weeklySchedule }}>
+  (() => {
+    const today = new Date(); today.setHours(0,0,0,0);
+    let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedDate = null;
+    let selectedClass = null;
+
+    const calTitle = document.getElementById("cal-title");
+    const calDays = document.getElementById("cal-days");
+    const slotsDate = document.getElementById("slots-date");
+    const slotsMeta = document.getElementById("slots-meta");
+    const slotList = document.getElementById("slot-list");
+    const drawer = document.getElementById("book-drawer");
+    const card = document.getElementById("book-card");
+    const drawerForm = document.getElementById("drawer-form");
+    const drawerSuccess = document.getElementById("drawer-success");
+    const form = document.getElementById("book-form");
+
+    const fmtMonth = (d) => d.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+    const fmtDate = (d) => d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+    const fmtShort = (d) => d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+
+    function renderCal() {
+      const [m, y] = fmtMonth(viewDate).split(" ");
+      calTitle.innerHTML = `${m} <em>${y}</em>`;
+      calDays.innerHTML = "";
+      const year = viewDate.getFullYear();
+      const month = viewDate.getMonth();
+      const first = new Date(year, month, 1);
+      const dow = (first.getDay() + 6) % 7;
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let i = 0; i < dow; i++) {
+        const pad = document.createElement("div");
+        pad.className = "cal-day pad";
+        calDays.appendChild(pad);
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = new Date(year, month, d);
+        const past = date < today;
+        const isToday = date.getTime() === today.getTime();
+        const isSelected = selectedDate && selectedDate.getTime() === date.getTime();
+        const classes = schedule[date.getDay()] || [];
+
+        const cell = document.createElement("div");
+        cell.className = "cal-day" + (past ? " past" : "") + (classes.length === 0 ? " off" : "") + (isToday ? " today" : "") + (isSelected ? " selected" : "");
+        cell.innerHTML = `<span class="d-num">${d}</span>` + (!past && classes.length ? `<span class="d-dots">${classes.slice(0,3).map(() => '<i></i>').join('')}</span>` : "");
+        if (!past && classes.length) {
+          cell.addEventListener("click", () => selectDate(date));
+        }
+        calDays.appendChild(cell);
+      }
+    }
+
+    function renderSlots() {
+      const dow = selectedDate.getDay();
+      const classes = schedule[dow] || [];
+      const totalSpaces = classes.reduce((s, c) => s + (c.capacity - c.booked), 0);
+
+      const parts = fmtDate(selectedDate).split(" ");
+      slotsDate.innerHTML = `${parts[0]} <em>${parts.slice(1).join(" ")}</em>`;
+      slotsMeta.textContent = `${classes.length} classes · ${totalSpaces} spaces`;
+
+      slotList.innerHTML = "";
+      if (classes.length === 0) {
+        slotList.innerHTML = `<li class="slots-empty">Nothing today<span class="sm">Quiet day at Studio 17</span></li>`;
+        return;
+      }
+      classes.forEach((c, idx) => {
+        const left = c.capacity - c.booked;
+        const full = left <= 0;
+        const li = document.createElement("li");
+        li.className = "slot" + (full ? " full" : "");
+        const pips = Array.from({ length: c.capacity }).map((_, i) => `<i class="${i < c.booked ? 'empty' : ''}"></i>`).join("");
+        li.innerHTML = `
+          <div class="slot-time">${c.time}<small>${c.time < "12:00" ? "morning" : c.time < "17:00" ? "midday" : "evening"}</small></div>
+          <div class="slot-info">
+            <div class="name">${c.name.replace(/(Flow|Strong|Foundations|Restore|Reformer)/i, (m) => `<em>${m}</em>`)}</div>
+            <div class="teacher">with ${c.instructor} · 50 min</div>
+          </div>
+          <div class="slot-right">
+            <div class="slot-spaces">
+              <div class="pips">${pips}</div>
+              ${full ? "Full" : `${left} left`}
+            </div>
+            <button class="slot-book" ${full ? "disabled" : ""}>${full ? "Waitlist" : "Book"}</button>
+          </div>
+        `;
+        if (!full) li.addEventListener("click", () => openDrawer(c));
+        slotList.appendChild(li);
+      });
+    }
+
+    function selectDate(d) {
+      selectedDate = d;
+      renderCal();
+      renderSlots();
+    }
+
+    function openDrawer(c) {
+      selectedClass = c;
+      document.getElementById("sum-class").innerHTML = c.name.replace(/(Flow|Strong|Foundations|Restore|Reformer)/i, (m) => `<em>${m}</em>`);
+      document.getElementById("sum-teacher").textContent = c.instructor;
+      document.getElementById("sum-when").innerHTML = `${fmtShort(selectedDate)} · <em>${c.time}</em>`;
+      document.getElementById("drawer-sub").textContent = `${c.capacity - c.booked} of ${c.capacity} spaces`;
+      drawerForm.style.display = "";
+      drawerSuccess.style.display = "none";
+      drawer.classList.add("open");
+    }
+    function closeDrawer() { drawer.classList.remove("open"); }
+
+    document.getElementById("cal-prev").addEventListener("click", () => { viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1); renderCal(); });
+    document.getElementById("cal-next").addEventListener("click", () => { viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1); renderCal(); });
+    document.getElementById("drawer-close").addEventListener("click", closeDrawer);
+    document.getElementById("drawer-cancel").addEventListener("click", closeDrawer);
+    document.getElementById("drawer-done").addEventListener("click", closeDrawer);
+    drawer.addEventListener("click", (e) => { if (e.target === drawer) closeDrawer(); });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      document.getElementById("success-sub").innerHTML = `${selectedClass.name} · ${fmtShort(selectedDate)} · ${selectedClass.time}`;
+      document.getElementById("success-email").textContent = data.get("email");
+      drawerForm.style.display = "none";
+      drawerSuccess.style.display = "";
+      form.reset();
+    });
+
+    renderCal();
+  })();
+</script>

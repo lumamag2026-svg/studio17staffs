@@ -1,0 +1,48 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Ticker from "../components/Ticker.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  hideFooter?: boolean;
+}
+
+const {
+  title = "Studio 17 · Pilates, slowly done well.",
+  description = "A reformer pilates studio in Westbury Park, Staffordshire. Small classes, one teacher, done in the old way.",
+  hideFooter = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-palette="sage" data-density="tight">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Nav />
+    <main><slot /></main>
+    {!hideFooter && <Footer />}
+    <Ticker />
+
+    <script is:inline>
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+          }
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
