@@ -113,7 +113,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .ticker-track {
   display: flex; gap: 56px; white-space: nowrap;
-  animation: tick 40s linear infinite;
+  animation: tick 28s linear infinite;
   will-change: transform;
 }
 .ticker-track span { display: inline-flex; align-items: center; gap: 56px; }
@@ -262,7 +262,7 @@ img, svg { display: block; max-width: 100%; }
 .marquee-track {
   display: flex; gap: 60px; white-space: nowrap;
   font-family: var(--display); font-size: clamp(40px, 6vw, 88px); line-height: 1;
-  animation: tick 30s linear infinite;
+  animation: tick 18s linear infinite;
 }
 .marquee-track span { display: inline-flex; align-items: center; gap: 60px; font-style: italic; color: var(--taupe); }
 .marquee-track span::after { content: '○'; color: var(--brick); font-style: normal; font-size: .5em; }
