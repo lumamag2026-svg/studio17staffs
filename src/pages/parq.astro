@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="PARQ Form · Studio 17" description="Health questionnaire required before your first class at Studio 17.">
+  <section class="parq" style="padding: 120px var(--gutter) 120px;">
+    <div class="sec-label reveal">
+      <span class="num">PARQ</span>
+      <h2>Health <em>questionnaire</em>.<br>Required before your first class.</h2>
+    </div>
+
+    <p style="max-width: 60ch; color: var(--ink); margin: 0 0 40px; font-size: 16px; line-height: 1.65;">
+      Five minutes. Read each question and tick yes or no. If anything changes between now and class, please update us.
+    </p>
+
+    <form class="parq-form" id="parq-form">
+      <fieldset>
+        <legend>About you</legend>
+        <div class="row two">
+          <div class="field">
+            <label>First name</label>
+            <input required name="first" />
+          </div>
+          <div class="field">
+            <label>Last name</label>
+            <input required name="last" />
+          </div>
+        </div>
+        <div class="row two">
+          <div class="field">
+            <label>Email</label>
+            <input required type="email" name="email" />
+          </div>
+          <div class="field">
+            <label>Phone</label>
+            <input required type="tel" name="phone" />
+          </div>
+        </div>
+        <div class="row two">
+          <div class="field">
+            <label>Date of birth</label>
+            <input required type="date" name="dob" />
+          </div>
+          <div class="field">
+            <label>Emergency contact (name + number)</label>
+            <input required name="emergency" placeholder="e.g. Ian Smith · 07000 000 000" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Health screening</legend>
+        <p class="screen-note">
+          Tick <strong>yes</strong> if a question applies to you. Anything you'd like Emma to know goes in the notes box at the end.
+        </p>
+
+        {[
+          "Has your doctor ever said you have a heart condition or high blood pressure?",
+          "Do you ever feel pain in your chest when you do physical activity?",
+          "In the past month, have you had chest pain when not doing activity?",
+          "Do you lose your balance because of dizziness or do you ever lose consciousness?",
+          "Do you have a bone or joint problem that could be made worse by exercise?",
+          "Are you currently taking prescribed medication for blood pressure, heart, or other condition?",
+          "Have you had any surgery in the last 12 months?",
+          "Are you currently pregnant, or have you given birth in the last 6 months?",
+          "Do you know of any other reason you should not do physical activity?",
+        ].map((q, i) => (
+          <div class="yn">
+            <span class="qn">{i + 1}</span>
+            <span class="qt">{q}</span>
+            <div class="yn-buttons">
+              <label><input type="radio" name={`q${i}`} value="no" required /> No</label>
+              <label><input type="radio" name={`q${i}`} value="yes" /> Yes</label>
+            </div>
+          </div>
+        ))}
+      </fieldset>
+
+      <fieldset>
+        <legend>Anything we should know</legend>
+        <div class="field">
+          <label>Current or recent injuries</label>
+          <textarea name="injuries" rows="3" placeholder="e.g. lower back, healing shoulder, anything tweaking right now"></textarea>
+        </div>
+        <div class="field">
+          <label>Notes for your teacher</label>
+          <textarea name="notes" rows="3" placeholder="Anything else Emma or Ruby should know before you step on the bed"></textarea>
+        </div>
+        <div class="field">
+          <label>Height</label>
+          <input name="height" placeholder="e.g. 5'7&quot; or 170cm" />
+        </div>
+        <div class="field">
+          <label>Weight</label>
+          <input name="weight" placeholder="e.g. 65kg" />
+          <small class="hint">Bed limits: max 130kg, max 6'3" height.</small>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sign &amp; agree</legend>
+        <label class="check">
+          <input type="checkbox" name="agree-truth" required />
+          <span>I confirm the information above is true and complete to the best of my knowledge.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="agree-update" required />
+          <span>I'll let Studio 17 know if anything changes about my health or injuries.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="agree-rules" required />
+          <span>I've read the studio rules (grip socks, arrival time, 24-hour cancellation).</span>
+        </label>
+
+        <div class="row two">
+          <div class="field">
+            <label>Signed (type your name)</label>
+            <input required name="signed" />
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input required type="date" name="signed-date" />
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="parq-submit">Submit form</button>
+      </div>
+
+      <div id="parq-ok" class="parq-ok" hidden>
+        <div class="check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12L10 17L19 7" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <div class="v">Thank you. PARQ received.</div>
+          <div class="sm">Emma will read it before your first class. See you in the studio.</div>
+        </div>
+      </div>
+    </form>
+  </section>
+</Layout>
+
+<script is:inline>
+  const f = document.getElementById("parq-form");
+  f?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    f.querySelectorAll("input, textarea, button").forEach((el) => (el.disabled = true));
+    document.getElementById("parq-ok").hidden = false;
+    document.getElementById("parq-ok").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+</script>

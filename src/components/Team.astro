@@ -1,57 +1,79 @@
 ---
 import { portraits } from "../data/images";
 
-const emma = {
-  name: "Emma",
-  role: "Founder · Instructor",
-  photo: portraits[0],
-};
+const team = [
+  {
+    name: "Emma",
+    role: "Founder · Head Instructor",
+    photo: portraits[0],
+    bio: "Studio 17 is Emma's studio. Married to Ian, mum to two teenagers and Phoebe the black lab, she opened the room with one idea: a reformer studio in Westbury Park where no one is ever left in the back row.",
+    quals: [
+      "Level 3 Reformer Pilates",
+      "Level 3 Mat Pilates",
+      "Level 2 & 3 Personal Trainer",
+      "Level 2 & 3 Children's PT",
+      "Level 2 & 3 Nutrition",
+      "Menopause Trained",
+      "First Aid",
+    ],
+  },
+  {
+    name: "Ruby",
+    role: "Instructor",
+    photo: portraits[0],
+    bio: "Ruby brings a dance-trained eye for movement. She teaches with the same careful, classical approach as Emma, with a soft spot for clients getting back to feeling strong.",
+    quals: [
+      "Level 3 Reformer Pilates",
+      "Level 3 Mat Pilates",
+      "Level 3 Diploma in Dance",
+      "First Aid",
+    ],
+  },
+];
 ---
 
-<section class="py-28 bg-cream-deep/60 relative overflow-hidden">
-  <div class="max-w-6xl mx-auto px-6 lg:px-10">
-    <div class="max-w-2xl reveal">
-      <div class="text-xs uppercase tracking-[0.25em] text-sage-deep">Your teacher</div>
-      <h2 class="mt-4 text-4xl md:text-6xl">One teacher. Every class. Your name, remembered.</h2>
-    </div>
+<section class="team tint" id="emma">
+  <div class="sec-label reveal">
+    <span class="num">05 / Teachers</span>
+    <h2>Meet <em>Emma</em> and <em>Ruby</em>.</h2>
+  </div>
 
-    <div class="mt-16 grid md:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
-      <article class="relative reveal">
-        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-sage/30 via-clay/20 to-cream overflow-hidden">
-          <img
-            src={emma.photo}
-            alt={`Portrait of ${emma.name}`}
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+  <div class="team-grid">
+    {team.map((m, i) => (
+      <article class="team-member reveal">
+        <div class="tm-photo">
+          <div class="ph">
+            <img src={m.photo} alt={`${m.name}, ${m.role} at Studio 17`} loading="lazy" />
+            <span class="ph-label"><span class="sq"></span> {m.role}</span>
+            <span class="ph-tag">IMG · 0{5 + i}</span>
+          </div>
         </div>
-        <div class="absolute -bottom-6 -right-6 rounded-2xl bg-cream p-5 shadow-xl shadow-ink/5 max-w-[240px]">
-          <div class="text-xs uppercase tracking-widest text-sage-deep">Since 2022</div>
-          <div class="mt-1 font-display text-lg leading-tight">Level 4 reformer · 8 years teaching.</div>
+        <div class="tm-body">
+          <div class="tm-name">{m.name}</div>
+          <div class="tm-role">{m.role}</div>
+          <p class="tm-bio">{m.bio}</p>
+
+          <dl class="tm-quals">
+            {m.quals.map((q) => (
+              <div>
+                <dt>{q.split(" ")[0]} {q.split(" ")[1] ?? ""}</dt>
+                <dd>{q.split(" ").slice(2).join(" ") || q}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </article>
+    ))}
+  </div>
 
-      <div class="reveal">
-        <div class="font-display text-5xl md:text-6xl">{emma.name}</div>
-        <div class="mt-2 text-sage-deep">{emma.role}</div>
-
-        <div class="mt-8 space-y-5 text-ink-soft leading-relaxed">
-          <p>
-            Studio 17 is Emma's studio. She opened it in 2022 to teach the way she wished she'd been taught. Small classes, careful cues, and no one left in the back row.
-          </p>
-          <p>
-            Every class you book, she teaches. There's no rotating roster of instructors, no substitutes to get used to. You'll see the same face on Monday morning as you do on Saturday, and she'll remember where you were last week.
-          </p>
-          <p>
-            Emma holds Level 4 reformer qualifications and is trained in prenatal, postnatal, and rehabilitative pilates.
-          </p>
-        </div>
-
-        <a href="/bookings" class="mt-10 inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3.5 text-sm font-medium hover:bg-sage-deep transition">
-          Book a class with Emma
-          <span aria-hidden>→</span>
-        </a>
-      </div>
-    </div>
+  <div class="team-quote reveal">
+    <blockquote>
+      <p>"I don't count reps at you. I watch, I adjust, and I remember
+      where you were last week. That's the whole job."</p>
+      <footer>Emma, founder</footer>
+    </blockquote>
+    <a href="/bookings" class="team-cta">
+      Book a class <span aria-hidden="true">→</span>
+    </a>
   </div>
 </section>

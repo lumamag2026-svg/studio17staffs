@@ -1,0 +1,57 @@
+---
+const includes = [
+  { k: "01 / Studio", v: "1 × Reformer class each Sunday" },
+  { k: "02 / At home", v: "2 × home workouts each week" },
+  { k: "03 / Eat", v: "Nutrition plan + weekly tweaks" },
+  { k: "04 / Together", v: "WhatsApp group with the whole cohort" },
+  { k: "05 / Track", v: "Weekly weigh-in (private, optional)" },
+  { k: "06 / Ask", v: "Weekly Q&A with Emma" },
+];
+---
+
+<section class="bootcamp" id="bootcamp">
+  <div class="sec-label reveal">
+    <span class="num">06 / Course</span>
+    <h2>Six-week <em>Bootcamp</em>.<br>Sundays at the studio.</h2>
+  </div>
+
+  <div class="bc-grid reveal">
+    <div class="bc-lede">
+      <p>
+        A six-week course that pulls together reformer, mat, nutrition and accountability
+        into one programme. Designed for anyone who wants to feel <em>different</em> in six weeks,
+        not just busier.
+      </p>
+
+      <div class="bc-meta">
+        <div>
+          <div class="k">Length</div>
+          <div class="v">6 weeks</div>
+        </div>
+        <div>
+          <div class="k">When</div>
+          <div class="v">Sundays · 08:00 – 13:00</div>
+        </div>
+        <div>
+          <div class="k">Group size</div>
+          <div class="v">Capped at 3</div>
+        </div>
+        <div>
+          <div class="k">Investment</div>
+          <div class="v"><em>Pricing on request</em></div>
+        </div>
+      </div>
+
+      <a href="/#contact" class="bc-cta">Register your interest <span aria-hidden="true">→</span></a>
+    </div>
+
+    <ul class="bc-includes">
+      {includes.map((it) => (
+        <li>
+          <div class="k">{it.k}</div>
+          <div class="v">{it.v}</div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

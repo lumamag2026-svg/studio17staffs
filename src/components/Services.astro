@@ -1,18 +1,20 @@
 ---
+import { pricing } from "../data/schedule";
+
 const services = [
-  { num: "01", name: "Reformer", emph: "Flow", meta: "Group", max: "Max 6", dur: "55 minutes", price: "£28", unit: "per class" },
-  { num: "02", name: "Classical", emph: "Mat", meta: "Group", max: "Max 10", dur: "50 minutes", price: "£18", unit: "per class" },
-  { num: "03", name: "Tower &", emph: "Cadillac", meta: "Group", max: "Max 4", dur: "60 minutes", price: "£34", unit: "per class" },
-  { num: "04", name: "Private", emph: "One-to-one", meta: "Format", max: "1:1", dur: "60 minutes", price: "£85", unit: "per session" },
-  { num: "05", name: "Pre &", emph: "Post-natal", meta: "Group", max: "Max 5", dur: "50 minutes", price: "£26", unit: "per class" },
-  { num: "06", name: "Rehab &", emph: "Recovery", meta: "Format", max: "1:1 · Physio-led", dur: "75 minutes", price: "£110", unit: "per session" },
+  { num: "01", name: "Foundations", emph: "Beginner", meta: "Group", max: "Max 3", dur: "45 minutes", price: pricing.single, unit: "per class" },
+  { num: "02", name: "Progressions", emph: "Intermediate", meta: "Group", max: "Max 3", dur: "45 minutes", price: pricing.single, unit: "per class" },
+  { num: "03", name: "Master", emph: "Class", meta: "Group", max: "Max 3", dur: "45 minutes", price: pricing.single, unit: "per class" },
+  { num: "04", name: "Private", emph: "1:1", meta: "Format", max: "1 person", dur: "60 minutes", price: pricing.privateOne, unit: "per session" },
+  { num: "05", name: "Private", emph: "1:2", meta: "Format", max: "2 people", dur: "60 minutes", price: pricing.privateTwo, unit: "per session" },
+  { num: "06", name: "Sunday", emph: "Bootcamp", meta: "Course", max: "6 weeks", dur: "45 min · weekly", price: pricing.bootcamp, unit: "ask for price" },
 ];
 ---
 
 <section class="services tint" id="classes">
   <div class="sec-label reveal">
     <span class="num">02 / Method</span>
-    <h2>Six ways to <em>move</em>.<br>All taught by one teacher.</h2>
+    <h2>Six ways to <em>move</em>.<br>Pick where you're at.</h2>
   </div>
 
   <ul class="svc-list reveal">
@@ -29,4 +31,19 @@ const services = [
       </li>
     ))}
   </ul>
+
+  <div class="svc-packs reveal">
+    <div class="pack">
+      <div class="pack-k">5 Class Pack</div>
+      <div class="pack-v">£95<small>save £2.50</small></div>
+    </div>
+    <div class="pack">
+      <div class="pack-k">10 Class Pack</div>
+      <div class="pack-v">£180<small>save £15</small></div>
+    </div>
+    <div class="pack">
+      <div class="pack-k">Gift Vouchers</div>
+      <div class="pack-v">Available<small>any value · ask in studio</small></div>
+    </div>
+  </div>
 </section>

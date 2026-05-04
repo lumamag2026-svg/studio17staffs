@@ -1,0 +1,42 @@
+---
+const rules = [
+  { k: "Grip socks", v: "No bare feet. Grip socks required (£5 at the studio if you forget)." },
+  { k: "Hair", v: "Hair tied up. No loose strings or drawcords on clothing." },
+  { k: "Arrive", v: "10 minutes before class. Earlier? Please wait outside, another class is running." },
+  { k: "On time", v: "Doors lock at the start. We run a tight schedule." },
+  { k: "Capacity", v: "3 reformers per class. Always." },
+  { k: "Fit", v: "Up to 130kg, up to 6'3\". The bed dimensions don't allow more." },
+  { k: "PARQ", v: "Everyone signs a short health form before their first class. Update us if anything changes." },
+  { k: "Injuries", v: "Tell us before class. We'll either work with it or signpost you to someone who can." },
+  { k: "No pregnancies", v: "We don't currently teach pregnancy or postnatal classes." },
+  { k: "No children", v: "Studio is adults only." },
+  { k: "Toilet", v: "In the main house. Phoebe the lab lives there, kept away from the studio. She barks but she's harmless." },
+  { k: "Parking", v: "On-street outside the studio. Door is on the side of the house." },
+  { k: "Cancellation", v: "24 hours' notice to move a class. After that, the credit is lost." },
+];
+---
+
+<section class="rules" id="before">
+  <div class="sec-label reveal">
+    <span class="num">07 / Before you come</span>
+    <h2>A few <em>house rules</em>.<br>Quick read.</h2>
+  </div>
+
+  <ul class="rules-list reveal">
+    {rules.map((r, i) => (
+      <li class="rule">
+        <div class="rule-num">{String(i + 1).padStart(2, "0")}</div>
+        <div class="rule-k">{r.k}</div>
+        <div class="rule-v">{r.v}</div>
+      </li>
+    ))}
+  </ul>
+
+  <div class="rules-aside reveal">
+    <p>
+      Newer to the reformer? There's a short setup video <span class="soon">(coming soon)</span> showing how
+      the bed works. If you'd rather just be shown in person, arrive 10 minutes early on your first day.
+    </p>
+    <a href="/parq" class="rules-cta">Fill in your PARQ form <span aria-hidden="true">→</span></a>
+  </div>
+</section>
