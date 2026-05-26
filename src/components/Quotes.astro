@@ -1,0 +1,26 @@
+---
+const quotes = [
+  "A reformer boutique where no one is overlooked.",
+  "Guided, supported, and never lost in the room.",
+  "Move with control, finish with confidence.",
+  "A space to move, focus, and build quietly.",
+  "A quieter kind of strength.",
+];
+---
+
+<section class="quotes" id="quotes">
+  <div class="sec-label reveal">
+    <span class="num">·· / Voice</span>
+    <h2>How the room <em>feels</em>.</h2>
+  </div>
+
+  <div class="quotes-marquee reveal" aria-label="Studio 17 ethos">
+    <div class="quotes-track">
+      {[...quotes, ...quotes].map((q) => (
+        <span class="q">
+          <span class="open">&ldquo;</span>{q}<span class="close">&rdquo;</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
