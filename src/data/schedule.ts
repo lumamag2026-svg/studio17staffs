@@ -74,9 +74,8 @@ export const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
 
 export const pricing = {
   single: "£19.50",
-  fivePack: "£95",
-  tenPack: "£180",
+  fivePack: "£87.50",
+  tenPack: "£150.00",
   privateOne: "£40",
   privateTwo: "£50",
-  bootcamp: "TBC",
 };

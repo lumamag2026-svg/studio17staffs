@@ -1,7 +1,6 @@
 ---
 const PHONE_DISPLAY = "07598 448 772";
-const PHONE_RAW = "07598448772";
-const SMS_URL = `sms:${PHONE_RAW}`;
+const WHATSAPP_URL = "https://wa.me/447598448772";
 ---
 
 <section class="booking" id="book">
@@ -28,7 +27,7 @@ const SMS_URL = `sms:${PHONE_RAW}`;
         </div>
         <div>
           <dt>Cancellation</dt>
-          <dd>24 hours' notice or the credit is <em>lost</em></dd>
+          <dd>Full refund over 24 hours before · <em>no refund</em> inside 24 hours</dd>
         </div>
         <div>
           <dt>First class</dt>
@@ -37,11 +36,11 @@ const SMS_URL = `sms:${PHONE_RAW}`;
       </dl>
     </div>
 
-    <a class="book-cta-btn" href={SMS_URL}>
+    <a class="book-cta-btn" href={WHATSAPP_URL} target="_blank" rel="noopener">
       <div class="btn-inner">
-        <span class="btn-eyebrow">{PHONE_DISPLAY}</span>
+        <span class="btn-eyebrow">WhatsApp · {PHONE_DISPLAY}</span>
         <span class="btn-title">Message to <em>book</em></span>
-        <span class="btn-sub">Text us and we'll hold your space</span>
+        <span class="btn-sub">Message us and we'll hold your space</span>
       </div>
       <span class="btn-arrow" aria-hidden="true">→</span>
     </a>
