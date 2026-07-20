@@ -1,5 +1,7 @@
 ---
-const BOOK_URL = "https://studio17pilates.simplybook.it/v2/";
+const PHONE_DISPLAY = "07598 448 772";
+const PHONE_RAW = "07598448772";
+const SMS_URL = `sms:${PHONE_RAW}`;
 ---
 
 <section class="booking" id="book">
@@ -11,8 +13,8 @@ const BOOK_URL = "https://studio17pilates.simplybook.it/v2/";
   <div class="book-cta-grid reveal">
     <div class="book-cta-info">
       <p class="book-cta-lede">
-        All bookings are taken through our <em>online system</em>. Three reformers per class, so spaces fill quickly.
-        First-timers, start with a <strong>1:1 session</strong> or message us.
+        Message us to book your space. Three reformers per class, so spaces fill quickly.
+        First-timers, start with a <em>1:1 session</em>.
       </p>
 
       <dl class="book-cta-meta">
@@ -35,11 +37,11 @@ const BOOK_URL = "https://studio17pilates.simplybook.it/v2/";
       </dl>
     </div>
 
-    <a class="book-cta-btn" href={BOOK_URL} target="_blank" rel="noopener">
+    <a class="book-cta-btn" href={SMS_URL}>
       <div class="btn-inner">
-        <span class="btn-eyebrow">Powered by SimplyBook</span>
-        <span class="btn-title">Book a class <em>now</em></span>
-        <span class="btn-sub">Opens the studio booking system in a new tab</span>
+        <span class="btn-eyebrow">{PHONE_DISPLAY}</span>
+        <span class="btn-title">Message to <em>book</em></span>
+        <span class="btn-sub">Text us and we'll hold your space</span>
       </div>
       <span class="btn-arrow" aria-hidden="true">→</span>
     </a>
