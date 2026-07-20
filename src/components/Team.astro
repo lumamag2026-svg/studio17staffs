@@ -6,13 +6,14 @@ const team = [
     photo: "/team/emma-v2.jpg",
     bio: "Studio 17 is Emma's studio. Founded by Emma, wife, mother of two, and dog lover to Phoebe the black lab, Studio 17 was born from a simple but powerful idea: to create a boutique reformer Pilates space in Westbury Park where every client receives personal attention and no one fades into the background.",
     quals: [
-      "Level 3 Reformer Pilates",
-      "Level 3 Mat Pilates",
-      "Level 2 & 3 Personal Trainer",
-      "Level 2 & 3 Children's PT",
-      "Level 2 & 3 Nutrition",
-      "Menopause Trained",
-      "First Aid",
+      { level: "Level 3", name: "Reformer Pilates" },
+      { level: "Level 3", name: "Mat Pilates" },
+      { level: "Level 2 & 3", name: "Personal Trainer" },
+      { level: "Level 2 & 3", name: "Children's PT" },
+      { level: "Level 2 & 3", name: "Nutrition" },
+      { level: "Trained", name: "Pre &amp; Post-Natal" },
+      { level: "Trained", name: "Menopause" },
+      { level: "Trained", name: "First Aid" },
     ],
   },
   {
@@ -21,10 +22,11 @@ const team = [
     photo: "/team/ruby.jpg",
     bio: "Ruby brings a dancer's precision and instinct for movement. She teaches with the same refined, classical approach as Emma, and is especially thoughtful in supporting clients as they grow stronger, move better, and feel more at home in their bodies.",
     quals: [
-      "Level 3 Reformer Pilates",
-      "Level 3 Mat Pilates",
-      "Level 3 Diploma in Dance",
-      "First Aid",
+      { level: "Level 3", name: "Reformer Pilates" },
+      { level: "Level 3", name: "Mat Pilates" },
+      { level: "Level 3", name: "Diploma in Dance" },
+      { level: "Level 2", name: "Exercise to Music" },
+      { level: "Trained", name: "First Aid" },
     ],
   },
 ];
@@ -54,8 +56,8 @@ const team = [
           <dl class="tm-quals">
             {m.quals.map((q) => (
               <div>
-                <dt>{q.split(" ")[0]} {q.split(" ")[1] ?? ""}</dt>
-                <dd>{q.split(" ").slice(2).join(" ") || q}</dd>
+                <dt>{q.level}</dt>
+                <dd set:html={q.name} />
               </div>
             ))}
           </dl>
