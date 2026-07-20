@@ -748,6 +748,36 @@ section.ink .sec-label h2 em { color: var(--clay); }
 
 .bc-sub { font-family: var(--ui); font-size: 15px; line-height: 1.6; color: var(--ink); margin-top: 14px; max-width: 56ch; }
 
+/* SERVICES — message to book */
+.svc-message {
+  margin-top: 32px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px;
+  align-items: center;
+  padding: 24px 28px;
+  border: 1px solid var(--brick);
+  background: color-mix(in oklab, var(--brick-soft) 50%, var(--bg));
+}
+.svc-message-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--brick-deep); margin-bottom: 6px;
+}
+.svc-message-copy p {
+  margin: 0; font-family: var(--display); font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.25; letter-spacing: -.01em; color: var(--ink);
+}
+.svc-message-cta {
+  display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
+  padding: 14px 22px; border-radius: 999px;
+  border: 1px solid var(--brick); background: var(--brick); color: var(--bg);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  transition: background .25s, border-color .25s;
+}
+.svc-message-cta:hover { background: var(--brick-deep); border-color: var(--brick-deep); }
+@media (max-width: 700px) {
+  .svc-message { grid-template-columns: 1fr; }
+  .svc-message-cta { justify-content: center; }
+}
+
 /* SERVICES — packs row */
 .svc-packs {
   margin-top: 32px;

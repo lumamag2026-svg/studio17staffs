@@ -2,19 +2,16 @@
 import { pricing } from "../data/schedule";
 
 const services = [
-  { num: "01", name: "Foundations", emph: "Beginner", meta: "Group", max: "Max 3", dur: "45 minutes", price: pricing.single, unit: "per class" },
-  { num: "02", name: "Progressions", emph: "Intermediate", meta: "Group", max: "Max 3", dur: "45 minutes", price: pricing.single, unit: "per class" },
-  { num: "03", name: "Master", emph: "Class", meta: "Group", max: "Max 3", dur: "45 minutes", price: pricing.single, unit: "per class" },
-  { num: "04", name: "Private", emph: "1:1", meta: "Format", max: "1 person", dur: "60 minutes", price: pricing.privateOne, unit: "per session" },
-  { num: "05", name: "Private", emph: "1:2", meta: "Format", max: "2 people", dur: "60 minutes", price: pricing.privateTwo, unit: "per session" },
-  { num: "06", name: "Sunday", emph: "Bootcamp", meta: "Course", max: "6 weeks", dur: "45 min · weekly", price: pricing.bootcamp, unit: "ask for price" },
+  { num: "01", name: "One", emph: "to One", meta: "1 : 1", max: "One client", dur: "60 minutes", price: pricing.privateOne, unit: "per session" },
+  { num: "02", name: "Two", emph: "to One", meta: "2 : 1", max: "Two clients", dur: "60 minutes", price: pricing.privateTwo, unit: "per session" },
+  { num: "03", name: "Three", emph: "to One", meta: "3 : 1", max: "Three clients", dur: "45 minutes", price: pricing.single, unit: "per person" },
 ];
 ---
 
 <section class="services tint" id="classes">
   <div class="sec-label reveal">
     <span class="num">02 / Method</span>
-    <h2>Six ways to <em>move</em>.<br>Pick where you're at.</h2>
+    <h2>One room, three <em>ways</em>.<br>Pick your ratio.</h2>
   </div>
 
   <ul class="svc-list reveal">
@@ -22,7 +19,7 @@ const services = [
       <li class="svc-row">
         <span class="svc-num">{s.num}</span>
         <span class="svc-name">{s.name} <em>{s.emph}</em></span>
-        <span class="svc-meta">{s.meta}<b>{s.max}</b></span>
+        <span class="svc-meta">Ratio<b>{s.meta}</b></span>
         <span class="svc-meta">Duration<b>{s.dur}</b></span>
         <span class="svc-price">{s.price}<small>{s.unit}</small></span>
         <span class="svc-arrow">
@@ -31,6 +28,16 @@ const services = [
       </li>
     ))}
   </ul>
+
+  <div class="svc-message reveal">
+    <div class="svc-message-copy">
+      <div class="svc-message-eyebrow">Not sure which fits?</div>
+      <p>Message us and we'll help you pick a session, or reserve a class space for you.</p>
+    </div>
+    <a href="/#contact" class="svc-message-cta">
+      Message to book <span aria-hidden="true">→</span>
+    </a>
+  </div>
 
   <div class="svc-packs reveal">
     <div class="pack">
