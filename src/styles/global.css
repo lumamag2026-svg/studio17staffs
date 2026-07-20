@@ -645,13 +645,14 @@ section.ink .sec-label h2 em { color: var(--clay); }
 /* STUDIO STRIP (photo between services and booking) */
 .studio-strip { padding: 0 var(--gutter) var(--row); }
 .studio-strip .strip-photo {
-  position: relative; aspect-ratio: 3/2; width: 100%;
+  position: relative; aspect-ratio: 3/4; width: 100%;
+  max-width: 620px; margin: 0 auto;
   filter: saturate(.96) contrast(1.01);
 }
-.studio-strip .ph img { object-position: center 30%; }
+.studio-strip .ph img { object-position: center center; }
 @media (max-width: 900px) {
   .studio-strip { padding: 0 var(--gutter) calc(var(--row) * .7); }
-  .studio-strip .strip-photo { aspect-ratio: 4/5; }
+  .studio-strip .strip-photo { aspect-ratio: 3/4; max-width: 100%; }
 }
 
 /* ABOUT EMMA */
