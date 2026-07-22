@@ -14,6 +14,8 @@ import Layout from "../layouts/Layout.astro";
     </p>
 
     <form class="parq-form" id="parq-form">
+      <input type="hidden" name="_subject" value="New PARQ form — Studio 17" />
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true" />
       <fieldset>
         <legend>About you</legend>
         <div class="row two">
@@ -137,16 +139,40 @@ import Layout from "../layouts/Layout.astro";
           <div class="sm">Emma will read it before your first class. See you in the studio.</div>
         </div>
       </div>
+
+      <p id="parq-err" class="contact-err" hidden>
+        Sorry, that didn't send. Please message us on <a href="https://wa.me/447598448772" target="_blank" rel="noopener">07598 448 772</a> and we'll sort it.
+      </p>
     </form>
   </section>
 </Layout>
 
 <script is:inline>
   const f = document.getElementById("parq-form");
-  f?.addEventListener("submit", (e) => {
+  const ENDPOINT = "https://formsubmit.co/ajax/emmastudio17@outlook.com";
+  f?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    f.querySelectorAll("input, textarea, button").forEach((el) => (el.disabled = true));
-    document.getElementById("parq-ok").hidden = false;
-    document.getElementById("parq-ok").scrollIntoView({ behavior: "smooth", block: "center" });
+    const btn = f.querySelector('button[type="submit"]');
+    const err = document.getElementById("parq-err");
+    err.hidden = true;
+    if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(f),
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        f.querySelectorAll("input, textarea, button").forEach((el) => (el.disabled = true));
+        document.getElementById("parq-ok").hidden = false;
+        document.getElementById("parq-ok").scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        throw new Error(data.message || "Failed");
+      }
+    } catch (_) {
+      err.hidden = false;
+      if (btn) { btn.disabled = false; btn.textContent = "Submit form"; }
+    }
   });
 </script>

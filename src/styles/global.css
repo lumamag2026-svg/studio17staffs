@@ -1003,6 +1003,10 @@ a.contact-block .v:hover, .contact-block a.v:hover { color: var(--brick); }
   font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--muted); margin-top: 4px;
 }
+.contact-err {
+  margin: 16px 0 0; font-size: 14px; line-height: 1.5; color: var(--brick-deep);
+}
+.contact-err a { color: var(--brick-deep); text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; }

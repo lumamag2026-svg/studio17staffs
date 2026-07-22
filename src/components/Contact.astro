@@ -36,6 +36,8 @@
 
     <!-- Right: form -->
     <form class="contact-form" id="contact-form">
+      <input type="hidden" name="_subject" value="New enquiry — Studio 17 website" />
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true" />
       <div class="book-field">
         <label>Your name</label>
         <input required name="name" placeholder="Jane Doe" />
@@ -73,15 +75,39 @@
           <div class="sm">We'll reply within one working day.</div>
         </div>
       </div>
+
+      <p id="contact-err" class="contact-err" hidden>
+        Sorry, that didn't send. Please message us on <a href="https://wa.me/447598448772" target="_blank" rel="noopener">07598 448 772</a> instead.
+      </p>
     </form>
   </div>
 </section>
 
 <script is:inline>
   const cf = document.getElementById("contact-form");
-  cf?.addEventListener("submit", (e) => {
+  const ENDPOINT = "https://formsubmit.co/ajax/emmastudio17@outlook.com";
+  cf?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    cf.querySelectorAll("input, select, textarea, button").forEach((el) => (el.disabled = true));
-    document.getElementById("contact-ok").hidden = false;
+    const btn = cf.querySelector('button[type="submit"]');
+    const err = document.getElementById("contact-err");
+    err.hidden = true;
+    if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(cf),
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        cf.querySelectorAll("input, select, textarea, button").forEach((el) => (el.disabled = true));
+        document.getElementById("contact-ok").hidden = false;
+      } else {
+        throw new Error(data.message || "Failed");
+      }
+    } catch (_) {
+      err.hidden = false;
+      if (btn) { btn.disabled = false; btn.textContent = "Send message"; }
+    }
   });
 </script>
