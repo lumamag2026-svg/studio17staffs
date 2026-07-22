@@ -76,6 +76,6 @@ export const pricing = {
   single: "£19.50",
   fivePack: "£87.50",
   tenPack: "£150.00",
-  privateOne: "£40",
+  privateOne: "£30",
   privateTwo: "£50",
 };
